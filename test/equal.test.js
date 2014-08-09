@@ -1,6 +1,6 @@
 'use strict';
 
-var should = require('should');
+require('should');
 var equal = require('../lib/equal');
 
 describe('/lib/equal.js', function() {
