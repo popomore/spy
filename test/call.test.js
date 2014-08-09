@@ -10,7 +10,7 @@ describe('/lib/call.js', function() {
     call.returned().should.be.true;
     call.calledWith().should.be.true;
     call.calledOn().should.be.true;
-    call.throwed().should.be.false;
+    call.threw().should.be.false;
   });
 
   it('should check return', function() {
@@ -43,12 +43,12 @@ describe('/lib/call.js', function() {
     var call = new Call({
       'error': new Error('err')
     });
-    call.throwed().should.be.true;
-    call.throwed('err').should.be.true;
-    call.throwed('other').should.be.false;
+    call.threw().should.be.true;
+    call.threw('err').should.be.true;
+    call.threw('other').should.be.false;
 
     call = new Call();
-    call.throwed().should.be.false;
+    call.threw().should.be.false;
   });
 
   it('should check context', function() {
@@ -58,6 +58,21 @@ describe('/lib/call.js', function() {
     });
     call.calledOn(ctx).should.be.true;
     call.calledOn({}).should.be.false;
+  });
+
+  it('should check calledWithNew', function() {
+    var call = new Call();
+    call.calledWithNew().should.be.false;
+
+    call = new Call({
+      'new': false
+    });
+    call.calledWithNew().should.be.false;
+
+    call = new Call({
+      'new': true
+    });
+    call.calledWithNew().should.be.true;
   });
 
   it('should check calledWith', function() {
