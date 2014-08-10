@@ -21,6 +21,6 @@
     "test": "make test"
   },
   "spm": {
-    "main": "spy.js"
+    "main": "lib/spy.js"
   }
 }
