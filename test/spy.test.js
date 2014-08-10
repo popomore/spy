@@ -161,6 +161,35 @@ describe('/lib/spy.js', function() {
       spy.calledWithNew().should.be.true;
       spy.alwaysCalledWithNew().should.be.false;
     });
+
+    it('should calledBefore/calledAfter', function() {
+      var spy1 = spyit();
+      var spy2 = spyit();
+      spy1();
+      spy2();
+      spy1();
+      spy1.calledBefore(spy2).should.be.true;
+      spy2.calledAfter(spy1).should.be.true;
+
+      var spy3 = spyit();
+      var spy4 = spyit();
+      spy3();
+      spy3.calledBefore(spy4).should.be.true;
+      spy4.calledAfter(spy3).should.be.true;
+
+      var spy5 = spyit();
+      var spy6 = spyit();
+      spy6();
+      spy6.calledBefore(spy5).should.be.true;
+      spy5.calledAfter(spy6).should.be.true;
+
+      var spy7 = spyit();
+      var spy8 = spyit();
+      spy7.calledBefore(spy8).should.be.false;
+      spy7.calledAfter(spy8).should.be.false;
+      spy8.calledBefore(spy7).should.be.false;
+      spy8.calledAfter(spy7).should.be.false;
+    });
   });
 
   describe('Mock', function() {
