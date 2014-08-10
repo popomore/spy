@@ -190,12 +190,92 @@ describe('/lib/spy.js', function() {
       spy8.calledBefore(spy7).should.be.false;
       spy8.calledAfter(spy7).should.be.false;
     });
+
+    it('should restore', function() {
+      var orig = function() {};
+      var obj = {
+        a: orig
+      };
+      var spy = spyit(obj, 'a');
+      obj.a.should.not.equal(orig);
+      spy.restore();
+      obj.a.should.equal(orig);
+    });
   });
 
   describe('Mock', function() {
 
-    it('', function() {
+    it('should mock fn', function() {
+      var spy = spyit();
+      spy.mock(function(arg) {
+        return arg * 10;
+      });
+      spy(1).should.eql(10);
+      spy(2).should.eql(20);
 
+      spy = spyit();
+      spy.mock(function() {
+        return this;
+      });
+      var ctx = {};
+      spy.call(ctx).should.equal(ctx);
+
+      spy = spyit();
+      spy.mock(function() {
+        throw new Error('err');
+      });
+      (function() {
+        spy();
+      }).should.throw('err');
+    });
+
+    it('should mock number', function() {
+      var obj = {
+        a: function() {}
+      };
+      var spy = spyit(obj, 'a');
+      spy.mock(1);
+      spy().should.eql(1);
+    });
+
+    it('should mock string', function() {
+      var obj = {
+        a: function() {}
+      };
+      var spy = spyit(obj, 'a');
+      spy.mock('a');
+      spy().should.eql('a');
+    });
+
+    it('should mock obj', function() {
+      var obj = {
+        a: function() {}
+      };
+      var spy = spyit(obj, 'a');
+      spy.mock({a: 1});
+      spy().should.eql({a: 1});
+    });
+
+    it('should reset when mock more than once', function() {
+      var spy = spyit();
+      spy();
+      spy.called.should.be.true;
+      spy.callCount.should.eql(1);
+      spy.mock(1);
+      spy.called.should.be.false;
+      spy.callCount.should.eql(0);
+      spy();
+      spy.mock(2);
+      spy.called.should.be.false;
+      spy.callCount.should.eql(0);
+    });
+
+    it('should pass through the call when reset mock', function() {
+      var spy = spyit();
+      spy.mock(1);
+      spy().should.eql(1);
+      spy.reset();
+      (spy() === undefined).should.be.true;
     });
   });
 });
