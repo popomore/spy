@@ -1,17 +1,48 @@
 'use strict';
 
 require('should');
-var Spy = require('../lib/spy');
+var spyit = require('../lib/spy');
 
 describe('/lib/spy.js', function() {
+
+  it('spy()', function() {
+    var spy = spyit();
+    spy();
+    spy(1);
+    spy();
+    spy.called.should.be.true;
+    spy.callCount.should.eql(3);
+    spy.calledWith(1).should.be.true;
+  });
+
+  it('spy(func)', function() {
+    function func() {}
+    var spy = spyit(func);
+    spy.should.not.equal(func);
+    spy.method.should.equal(func);
+    spy();
+    spy(1);
+    spy();
+    spy.called.should.be.true;
+    spy.callCount.should.eql(3);
+    spy.calledWith(1).should.be.true;
+  });
+
+  it('spy(obj, func)', function() {
+    var obj = {
+      a: function() {}
+    };
+    var spy = spyit(obj, 'a');
+    spy.should.equal(obj.a);
+  });
 
   it('should not wrap more than once', function() {
     var obj = {
       a: function() {}
     };
-    new Spy(obj, 'a');
+    spyit(obj, 'a');
     var a1 = obj.a;
-    new Spy(obj, 'a');
+    spyit(obj, 'a');
     obj.a.should.equal(a1);
   });
 
@@ -21,7 +52,7 @@ describe('/lib/spy.js', function() {
       var obj = {
         a: function() {}
       };
-      var spy = new Spy(obj, 'a');
+      var spy = spyit(obj, 'a');
       obj.a(1);
       spy.called.should.be.true;
       spy.callCount.should.eql(1);
@@ -34,7 +65,7 @@ describe('/lib/spy.js', function() {
       var obj = {
         a: function() {}
       };
-      var spy = Spy(obj, 'a');
+      var spy = spyit(obj, 'a');
       obj.a(1);
       obj.a(1, 2);
       obj.a(1);
@@ -55,7 +86,7 @@ describe('/lib/spy.js', function() {
       var obj = {
         a: function() {}
       };
-      var spy = new Spy(obj, 'a');
+      var spy = spyit(obj, 'a');
       obj.a(1, 2);
       obj.a(1, 2);
       spy.called.should.be.true;
@@ -72,7 +103,7 @@ describe('/lib/spy.js', function() {
           return ret;
         }
       };
-      var spy = new Spy(obj, 'a');
+      var spy = spyit(obj, 'a');
       ret = ['a'];
       obj.a();
       ret = ['a'];
@@ -91,7 +122,7 @@ describe('/lib/spy.js', function() {
       var obj = {
         a: function() {}
       };
-      var spy = new Spy(obj, 'a');
+      var spy = spyit(obj, 'a');
       var ctx = {};
       obj.a.call(ctx);
       obj.a.call({});
@@ -108,7 +139,7 @@ describe('/lib/spy.js', function() {
           throw new Error(args === 1 ? 'err1' : 'err');
         }
       };
-      var spy = new Spy(obj, 'a');
+      var spy = spyit(obj, 'a');
       try {obj.a();} catch(e) {}
       try {obj.a(1);} catch(e) {}
       spy.threw().should.be.true;
@@ -124,7 +155,7 @@ describe('/lib/spy.js', function() {
       var obj = {
         a: function() {}
       };
-      var spy = new Spy(obj, 'a');
+      var spy = spyit(obj, 'a');
       new obj.a();
       obj.a();
       spy.calledWithNew().should.be.true;
@@ -134,5 +165,8 @@ describe('/lib/spy.js', function() {
 
   describe('Mock', function() {
 
+    it('', function() {
+
+    });
   });
 });

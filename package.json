@@ -19,5 +19,8 @@
   "license": "MIT",
   "scripts": {
     "test": "make test"
+  },
+  "spm": {
+    "main": "spy.js"
   }
 }
