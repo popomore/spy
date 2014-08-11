@@ -1,6 +1,7 @@
 # spy
 
 [![NPM version](https://img.shields.io/npm/v/spy.svg?style=flat)](https://npmjs.org/package/spy)
+[![Spm version](http://spmjs.io/badge/spy)](http://spmjs.io/package/spy)
 [![Build Status](https://img.shields.io/travis/popomore/spy.svg?style=flat)](https://travis-ci.org/popomore/spy)
 [![Build Status](https://img.shields.io/coveralls/popomore/spy.svg?style=flat)](https://coveralls.io/r/popomore/spy)
 [![NPM downloads](http://img.shields.io/npm/dm/spy.svg?style=flat)](https://npmjs.org/package/spy)
