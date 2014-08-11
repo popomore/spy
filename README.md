@@ -53,9 +53,30 @@ bower install spy
 var spy = require('spy');
 var s = spy();
 s(1);
-s.called.should.be.true;
-s.callCount.should.eql(1);
-s.calledWith(1).should.be.true;
+s.called // return true
+s.callCount // return 1
+s.calledWith(1) // return true
+```
+
+mock spy function
+
+```
+var spy = require('spy');
+var s = spy();
+s.mock(1);
+s(); // return 1
+```
+
+mock module
+
+```
+// a.js
+module.exports = function() {}
+
+// b.js
+var a = require('spy').require('./a.js');
+a();
+a.callCount // return 1
 ```
 
 ## API
@@ -64,11 +85,11 @@ s.calledWith(1).should.be.true;
 
 Create a anonymous `Spy` function
 
-### spy(func) 监听函数
+### spy(func)
 
 Create a `Spy` function wrapped `func`
 
-### spy(obj, 'func') 监听对象的指定函数
+### spy(obj, 'func')
 
 Create a `Spy` function wrapped `obj.func`
 
