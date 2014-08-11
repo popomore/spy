@@ -3,5 +3,15 @@
   "version": "0.1.0",
   "description": "spy and mock for simple testcase",
   "main": "lib/spy.js",
-  "license": "MIT"
+  "license": "MIT",
+  "ignore": [
+    ".jshintrc",
+    ".gitignore",
+    ".editorconfig",
+    ".npmignore",
+    ".travis.yml",
+    "test/*",
+    "node_modules/*",
+    "coverage/*",
+  ]
 }

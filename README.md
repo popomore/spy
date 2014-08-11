@@ -41,6 +41,12 @@ spm install spy
 component install popomore/spy
 ```
 
+[bower](http://bower.io/)
+
+```
+bower install spy
+```
+
 ## Usage
 
 ```
