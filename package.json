@@ -1,7 +1,7 @@
 {
   "name": "spy",
-  "version": "0.1.0-alpha",
-  "description": "spy implement for test",
+  "version": "0.1.0",
+  "description": "spy and mock for simple testcase",
   "main": "index",
   "dependencies": {},
   "devDependencies": {
@@ -19,5 +19,8 @@
   "license": "MIT",
   "scripts": {
     "test": "make test"
+  },
+  "spm": {
+    "main": "lib/spy.js"
   }
 }
