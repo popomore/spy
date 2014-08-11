@@ -2,7 +2,7 @@
   "name": "spy",
   "repo": "popomore/spy",
   "version": "0.1.0",
-  "description": "spy implement for test",
+  "description": "spy and mock for simple testcase",
   "main": "lib/spy.js",
   "scripts": [
     "lib/spy.js",
