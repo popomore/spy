@@ -22,5 +22,19 @@
   },
   "spm": {
     "main": "lib/spy.js"
+  },
+  "testling": {
+    "harness": "mocha-bdd",
+    "files": "test/*.test.js",
+    "browsers": [
+      "ie/6..latest",
+      "chrome/latest",
+      "firefox/latest",
+      "safari/latest",
+      "opera/11.0..latest",
+      "iphone/6",
+      "ipad/6",
+      "android-browser/latest"
+    ]
   }
 }
