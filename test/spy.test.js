@@ -201,6 +201,17 @@ describe('/lib/spy.js', function() {
       spy.restore();
       obj.a.should.equal(orig);
     });
+
+    it('should spy modified object', function() {
+      var obj = {
+        a: function(obj) {
+          obj.b = 1;
+        }
+      };
+      var spy = spyit(obj, 'a');
+      spy({a: 1});
+      spy.calledWith({a: 1}).should.be.true;
+    });
   });
 
   describe('Mock', function() {
