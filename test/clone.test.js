@@ -6,7 +6,8 @@ var clone = require('../lib/clone');
 describe('/lib/clone.js', function() {
 
   it('should clone', function() {
-    (clone() === null).should.be.true;
+    (clone() === undefined).should.be.true;
+    (clone(undefined) === undefined).should.be.true;
     (clone(null) === null).should.be.true;
     clone(0).should.equal(0);
     clone(1).should.equal(1);

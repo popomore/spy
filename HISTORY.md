@@ -2,6 +2,10 @@
 
 ---
 
+## 0.1.3
+
+fix clone(undefined)
+
 ## 0.1.2
 
 should clone arguments causing that will be modified by the function
