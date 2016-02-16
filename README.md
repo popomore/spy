@@ -271,9 +271,9 @@ Same as calledWith, but assert the arguments length
 
 ```
 spy(1, 2, 3)
-spy.calls[0].calldWith(1) // false
-spy.calls[0].calldWith(1, 2) // false
-spy.calls[0].calldWith(1, 2, 3) // true
+spy.calls[0].calledWith(1) // false
+spy.calls[0].calledWith(1, 2) // false
+spy.calls[0].calledWith(1, 2, 3) // true
 ```
 
 #### call.calledWithNew
