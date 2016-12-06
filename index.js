@@ -1,13 +1,13 @@
 'use strict';
 
-var Module = require('module');
-var spy = require('./lib/spy');
+const Module = require('module');
+const spy = require('./lib/spy');
 
 module.exports = spy;
 
-var cache = {};
+const cache = {};
 module.exports.require = function mockRequire(moduleid) {
-  var path = Module._resolveFilename(moduleid, module.parent);
+  const path = Module._resolveFilename(moduleid, module.parent);
   if (path in cache) {
     return cache[path];
   }
@@ -16,7 +16,8 @@ module.exports.require = function mockRequire(moduleid) {
     delete require.cache[path];
   }
   module.parent.require(moduleid);
-  var pkg = require.cache[path];
-  var mock = spy(pkg, 'exports');
-  return cache[path] = mock;
+  const pkg = require.cache[path];
+  const mock = spy(pkg, 'exports');
+  cache[path] = mock;
+  return mock;
 };
