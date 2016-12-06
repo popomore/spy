@@ -1,7 +1,7 @@
 'use strict';
 
 require('should');
-var equal = require('../lib/equal');
+const equal = require('../lib/equal');
 
 describe('/lib/equal.js', function() {
 
@@ -18,8 +18,6 @@ describe('/lib/equal.js', function() {
   it('number', function() {
     equal(0, 0).should.be.true;
     equal(1, 1).should.be.true;
-    equal(0, new Number(0)).should.be.true;
-    equal(1, new Number(1)).should.be.true;
     equal(0, Number(0)).should.be.true;
     equal(1, Number(1)).should.be.true;
     equal(0, '0').should.be.false;
@@ -30,28 +28,27 @@ describe('/lib/equal.js', function() {
 
   it('string', function() {
     equal('a', 'a').should.be.true;
-    equal('a', new String('a')).should.be.true;
     equal('a', String('a')).should.be.true;
   });
 
   it('array', function() {
     equal([], []).should.be.true;
-    equal([], [1]).should.be.false;
-    equal([1, 'a'], [1, 'b']).should.be.false;
-    equal([1, ['a', 'b']], [1, ['a', 'b']]).should.be.true;
+    equal([], [ 1 ]).should.be.false;
+    equal([ 1, 'a' ], [ 1, 'b' ]).should.be.false;
+    equal([ 1, [ 'a', 'b' ]], [ 1, [ 'a', 'b' ]]).should.be.true;
   });
 
   it('object', function() {
     equal({}, {}).should.be.true;
-    equal({a: 1, b: 1}, {b: 1, a: 1}).should.be.true;
-    equal({a: ['1']}, {a: ['1']}).should.be.true;
-    equal({a: {b: {c: 1}}}, {a: {b: {c: 1}}}).should.be.true;
-    equal({a: {b: {c: 1}}}, {a: {b: {d: 1}}}).should.be.false;
-    equal({a: 1}, {b: 1, a: 1}).should.be.false;
+    equal({ a: 1, b: 1 }, { b: 1, a: 1 }).should.be.true;
+    equal({ a: [ '1' ] }, { a: [ '1' ] }).should.be.true;
+    equal({ a: { b: { c: 1 } } }, { a: { b: { c: 1 } } }).should.be.true;
+    equal({ a: { b: { c: 1 } } }, { a: { b: { d: 1 } } }).should.be.false;
+    equal({ a: 1 }, { b: 1, a: 1 }).should.be.false;
   });
 
   it('date', function() {
-    var d = new Date();
+    const d = new Date();
     equal(d, d).should.be.true;
     equal(new Date('2014-01-01'), new Date('2014-01-01')).should.be.true;
   });

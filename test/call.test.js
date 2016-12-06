@@ -1,12 +1,12 @@
 'use strict';
 
 require('should');
-var Call = require('../lib/call');
+const Call = require('../lib/call');
 
 describe('/lib/call.js', function() {
 
   it('should check without arguments', function() {
-    var call = new Call();
+    const call = new Call();
     call.returned().should.be.true;
     call.calledWith().should.be.true;
     call.calledOn().should.be.true;
@@ -14,23 +14,23 @@ describe('/lib/call.js', function() {
   });
 
   it('should check return', function() {
-    var call = new Call({
-      'return': 1
+    let call = new Call({
+      return: 1,
     });
     call.returned(1).should.be.true;
 
     call = new Call({
-      'return': 'a'
+      return: 'a',
     });
     call.returned('a').should.be.true;
 
     call = new Call({
-      'return': {a: 1}
+      return: { a: 1 },
     });
-    call.returned({a: 1}).should.be.true;
+    call.returned({ a: 1 }).should.be.true;
 
     call = new Call({
-      'return': null
+      return: null,
     });
     call.returned(null).should.be.true;
 
@@ -40,8 +40,8 @@ describe('/lib/call.js', function() {
   });
 
   it('should check throw', function() {
-    var call = new Call({
-      'error': new Error('err')
+    let call = new Call({
+      error: new Error('err'),
     });
     call.threw().should.be.true;
     call.threw('err').should.be.true;
@@ -52,41 +52,41 @@ describe('/lib/call.js', function() {
   });
 
   it('should check context', function() {
-    var ctx = {};
-    var call = new Call({
-      'context': ctx
+    const ctx = {};
+    const call = new Call({
+      context: ctx,
     });
     call.calledOn(ctx).should.be.true;
     call.calledOn({}).should.be.false;
   });
 
   it('should check calledWithNew', function() {
-    var call = new Call();
+    let call = new Call();
     call.calledWithNew().should.be.false;
 
     call = new Call({
-      'new': false
+      new: false,
     });
     call.calledWithNew().should.be.false;
 
     call = new Call({
-      'new': true
+      new: true,
     });
     call.calledWithNew().should.be.true;
   });
 
   it('should check calledWith', function() {
-    var call = new Call();
+    let call = new Call();
     call.calledWith().should.be.true;
 
     call = new Call({
-      'arguments': []
+      arguments: [],
     });
     call.calledWith().should.be.true;
     call.calledWithExactly().should.be.true;
 
     call = new Call({
-      'arguments': [1, 'a', {a: 1}, ['a']]
+      arguments: [ 1, 'a', { a: 1 }, [ 'a' ]],
     });
     call.calledWith().should.be.true;
     call.calledWithExactly().should.be.false;
@@ -94,8 +94,8 @@ describe('/lib/call.js', function() {
     call.calledWith(1, 'a').should.be.true;
     call.calledWith(1, 'a', 'b').should.be.false;
     call.calledWithExactly(1, 'a').should.be.false;
-    call.calledWith(1, 'a', {a: 1}).should.be.true;
-    call.calledWith(1, 'a', {a: 1}, ['a']).should.be.true;
-    call.calledWithExactly(1, 'a', {a: 1}, ['a']).should.be.true;
+    call.calledWith(1, 'a', { a: 1 }).should.be.true;
+    call.calledWith(1, 'a', { a: 1 }, [ 'a' ]).should.be.true;
+    call.calledWithExactly(1, 'a', { a: 1 }, [ 'a' ]).should.be.true;
   });
 });
