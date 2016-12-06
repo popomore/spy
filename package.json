@@ -1,6 +1,6 @@
 {
   "name": "spy",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "description": "spy and mock for simple testcase",
   "dependencies": {},
   "devDependencies": {

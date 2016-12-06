@@ -1,6 +1,10 @@
-# History
 
----
+1.0.0 / 2016-12-06
+==================
+
+  * feat: dont clone args
+  * typo license in readme
+  * Update README.md
 
 ## 0.1.3
 
